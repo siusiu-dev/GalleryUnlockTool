@@ -1,0 +1,26 @@
+<?xml version='1.0'?>
+<Obfuscator>
+  <Var name="InPath" value=".\bin\Release" />
+  <Var name="OutPath" value=".\bin\Release\Obfuscated" />
+  <Var name="KeepPublicApi" value="false" />
+  <Var name="HidePrivateApi" value="true" />
+  <Var name="RenameFields" value="true" />
+  <Var name="RenameProperties" value="true" />
+  <Var name="RenameEvents" value="true" />
+  <Var name="ReuseNames" value="true" />
+  <Var name="UseUnicodeNames" value="true" />
+  <Var name="HideStrings" value="true" />
+  <Var name="OptimizeMethods" value="true" />
+  <Var name="SuppressIldasm" value="true" />
+
+  <Module file="$(InPath)\GalleryUnlockPlugin.dll">
+    <SkipType name="NtrmanGalleryUnlock.GalleryUnlockPlugin" />
+    <SkipMethod type="NtrmanGalleryUnlock.GalleryUnlockPlugin" name="Awake" />
+    <SkipMethod type="NtrmanGalleryUnlock.GalleryUnlockPlugin" name="OnDestroy" />
+    <SkipMethod type="NtrmanGalleryUnlock.GalleryUnlockPlugin" name="Update" />
+  </Module>
+
+  <AssemblySearchPath path="$(InPath)" />
+  <AssemblySearchPath path=".\bepinex\core" />
+  <AssemblySearchPath path="D:\ntrman\Seasons of Loss_0.7r5 VH\SeasonsOfLoss_Data\Managed" />
+</Obfuscator>

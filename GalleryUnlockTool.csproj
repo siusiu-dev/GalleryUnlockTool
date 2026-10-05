@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>GalleryUnlockPlugin</AssemblyName>
+    <RootNamespace>NtrmanGalleryUnlock</RootNamespace>
+    <LangVersion>latest</LangVersion>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <AssemblyTitle>GalleryUnlockPlugin</AssemblyTitle>
+    <DebugType>none</DebugType>
+    <GameDir Condition="'$(GameDir)' == ''">D:\ntrman\Seasons of Loss_0.7r5 VH</GameDir>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Obfuscar" Version="2.2.50" PrivateAssets="all" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Include="GalleryUnlockPlugin.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="BepInEx">
+      <HintPath>$(GameDir)\BepInEx\core\BepInEx.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="0Harmony">
+      <HintPath>$(GameDir)\BepInEx\core\0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>$(GameDir)\SeasonsOfLoss_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(GameDir)\SeasonsOfLoss_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(GameDir)\SeasonsOfLoss_Data\Managed\UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>$(GameDir)\SeasonsOfLoss_Data\Managed\UnityEngine.UIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(GameDir)\SeasonsOfLoss_Data\Managed\UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="Obfuscate" AfterTargets="AfterBuild" Condition="'$(Configuration)' == 'Release'">
+    <Message Importance="high" Text="Running Obfuscar: $(Obfuscar) obfuscar.xml" />
+    <Exec Command="&quot;$(Obfuscar)&quot; obfuscar.xml" />
+    <Copy SourceFiles="bin\Release\Obfuscated\GalleryUnlockPlugin.dll" DestinationFiles="GalleryUnlockPlugin.dll" />
+    <Message Importance="high" Text="Obfuscated GalleryUnlockPlugin.dll deployed to project root." />
+  </Target>
+
+</Project>

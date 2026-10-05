@@ -1,0 +1,10 @@
+bin/
+obj/
+*.dll
+*.zip
+*.user
+*.suo
+.vs/
+GalleryUnlock-report.txt
+bepinex/
+bepinex_x86/
